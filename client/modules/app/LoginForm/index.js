@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Checkbox } from "semantic-ui-react";
 
 const LoginForm = ({ credentials, handleOnChange, handleOnSubmit }) => (
   <Form onSubmit={handleOnSubmit}>
@@ -21,11 +21,12 @@ const LoginForm = ({ credentials, handleOnChange, handleOnSubmit }) => (
       />
     </Form.Field>
     <Form.Field>
-      <Form.Checkbox
+      <Checkbox
         label="Remember"
         name="remember"
         checked={credentials.remember}
         onChange={handleOnChange}
+        onClick={handleOnChange}
       />
     </Form.Field>
     <Button type="submit">Submit</Button>
