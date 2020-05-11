@@ -1,0 +1,14 @@
+.sessionBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.buttonConnectMarginTop {
+  margin-top: 24px;
+}
+
+.titleDesc {
+  margin-bottom: 30px;
+}
