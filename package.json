@@ -6,15 +6,31 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "history": "^4.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "start:original": "react-scripts start",
+    "build:original": "react-scripts build",
+    "test:original": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server:dev": "nodemon --exec babel-node ./server/server",
+    "start:all": "concurrently \"npm run server:dev \" \"npm start\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +46,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.13",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.3",
+    "react-app-rewired": "^2.1.6",
+    "winston": "^3.2.1",
+    "winston-loggly": "^1.3.1"
   }
 }
