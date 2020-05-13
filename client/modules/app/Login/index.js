@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { signin } from "../../session/api";
 import styles from "./style.module.css";
 import "./style.css";
 import LoginForm from "../LoginForm";
 import Swiper from "swiper";
-import slideImage1 from "../../../images/jeffery-erhunse-4XK2oKKvzVU-unsplash.jpg";
-import slideImage2 from "../../../images/kristaps-ungurs-3PdvcqJGf3g-unsplash.jpg";
-import slideImage3 from "../../../images/chuttersnap--zEDq4sRxRE-unsplash.jpg";
+import logo from "../../../images/company_logo.png";
+import { Dropdown, Flag } from "semantic-ui-react";
+import gsap from "gsap";
 
 const Login = () => {
+  const leftContentRef = useRef();
+  const loginFormRef = useRef();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -16,10 +18,15 @@ const Login = () => {
   });
 
   useEffect(() => {
+    gsap.from(loginFormRef.current, {
+      duration: 0.5,
+      opacity: 0,
+      delay: 1.5,
+    });
     new Swiper(".swiper-container", {
       // Optional parameters
       direction: "horizontal",
-      loop: true,
+      loop: false,
       autoplay: {
         delay: 3000,
       },
@@ -50,7 +57,7 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
-      <div className={styles.leftContent}>
+      <div className={styles.leftContent} ref={leftContentRef}>
         {/* Slider main container */}
         <div className="swiper-container">
           {/* Additional required wrapper */}
@@ -58,31 +65,43 @@ const Login = () => {
             {/* Slides */}
             <div
               className="swiper-slide"
-              style={{ backgroundColor: "#0093D7" }}
-            >
-              {/*<img src={slideImage1} alt="" />*/}
-            </div>
-            <div
-              className="swiper-slide"
-              data-swiper-autoplay="6000"
-              style={{ backgroundColor: "#6A58B4" }}
-            >
-              {/*<img src={slideImage2} alt="" />*/}
-            </div>
-            <div
-              className="swiper-slide"
-              style={{ backgroundColor: "#0093D7" }}
-            >
-              {/*<img src={slideImage3} alt="" />*/}
-            </div>
+              style={{ background: "#1A4A96" }}
+            ></div>
           </div>
           {/* If we need pagination */}
-          <div className="swiper-pagination"></div>
+          {/* <div className="swiper-pagination"></div> */}
         </div>
       </div>
       <main className={styles.mainBlock}>
-        <nav className={styles.mainNav}></nav>
-        <div className={styles.authContent}>
+        <nav className={styles.mainNav}>
+          <a href="/">
+            <img src={logo} alt="logo" width="70px" />
+          </a>
+          <Dropdown
+            trigger={
+              <span>
+                <Flag name="cm" /> Français
+              </span>
+            }
+            options={[
+              {
+                key: "language",
+                text: <span>Choisissez votre langue</span>,
+                disabled: true,
+              },
+              {
+                key: "francais",
+                text: "Français",
+              },
+              {
+                key: "anglais",
+                text: "Anglais",
+              },
+            ]}
+            direction="left"
+          />
+        </nav>
+        <div className={styles.authContent} ref={loginFormRef}>
           <LoginForm
             credentials={credentials}
             handleOnChange={handleOnChange}

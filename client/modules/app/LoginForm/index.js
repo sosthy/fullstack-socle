@@ -1,58 +1,72 @@
 import React from "react";
 import styles from "./style.module.css";
+import { Form, Checkbox, Header } from "semantic-ui-react";
+import { forwardRefAs } from "../../../utils";
 
-const LoginForm = ({ credentials, handleOnChange, handleOnSubmit }) => (
-  <form className="ui form" onSubmit={handleOnSubmit}>
-    <h1 className="ui header">Salut, Bienvenue</h1>
-    <p className={styles.titleDesc}>
-      Log in to your Thunder account to get back your codes. Or new user Sign
-      up.
-    </p>
-    <div className="field">
-      <label>Username</label>
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        onChange={handleOnChange}
-        value={credentials.username}
-      />
-    </div>
-    <div className="field">
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={handleOnChange}
-        value={credentials.password}
-      />
-    </div>
-    <div className="field">
-      <div className={styles.buttonConnectMarginTop}>
-        <button className="fluid huge primary ui button" type="submit">
+const ForwardableForm = forwardRefAs("form");
+
+const LoginForm = ({
+  credentials,
+  handleOnChange,
+  handleOnSubmit,
+  loginFormRef,
+}) => {
+  return (
+    <Form
+      onSubmit={handleOnSubmit}
+      as={ForwardableForm}
+      forwardedRef={loginFormRef}
+    >
+      <Header as="h1">Bienvenue</Header>
+      <p className={styles.titleDesc}>
+        Log in to your Thunder account to get back your codes. Or new user Sign
+        up.
+      </p>
+      <Form.Field>
+        <Form.Input
+          label="Username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={handleOnChange}
+          value={credentials.username}
+        />
+      </Form.Field>
+      <Form.Field>
+        <Form.Input
+          label="Password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleOnChange}
+          value={credentials.password}
+        />
+      </Form.Field>
+      <Form.Field>
+        <Form.Button
+          fluid
+          primary
+          size="huge"
+          className={styles.buttonConnectMarginTop}
+        >
           Submit
-        </button>
-      </div>
-    </div>
-    <div className={"field"}>
-      <div className={styles.sessionBlock}>
-        <div className="ui checkbox">
-          <input
-            id="remember"
-            name="remember"
-            type="checkbox"
-            tabIndex="0"
-            className="hidden"
-            onChange={handleOnChange}
-            checked={credentials.remember}
-          />
-          <label htmlFor="remember">Remember Me</label>
-        </div>
+        </Form.Button>
+      </Form.Field>
+      <Form.Field className={styles.sessionBlock}>
+        <Checkbox
+          label="Remember Me"
+          name="remember"
+          type="checkbox"
+          tabIndex="0"
+          className="hidden"
+          ref={null}
+          onChange={handleOnChange}
+          checked={credentials.remember}
+        />
         <a href="/">Forgot password ?</a>
-      </div>
-    </div>
-  </form>
-);
+      </Form.Field>
+    </Form>
+  );
+};
 
 export default LoginForm;
