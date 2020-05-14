@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/AdminLTE-3.0.4
 
 # testing
 /coverage

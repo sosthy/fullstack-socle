@@ -1,5 +1,6 @@
-export { default as App } from "./App";
-export { default as Home } from "./Home";
-export { default as Login } from "./Login";
-export { default as NotFound } from "./NotFound";
-export { default as Signup } from "./Signup";
+export { default as App } from "./components/App";
+export { default as Dashboard } from "./components/Dashboard";
+export { default as Landing } from "./components/Landing";
+export { default as Signin } from "./components/Signin";
+export { default as NotFound } from "./components/NotFound";
+export { default as Signup } from "./components/Signup";
