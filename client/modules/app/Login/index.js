@@ -12,7 +12,7 @@ const Login = () => {
     remember: true,
   });
 
-  useEffect(() => {});
+  useEffect(() => {}, []);
 
   const handleOnSubmit = (e) => {
     console.log(credentials);
