@@ -4,12 +4,13 @@ import Landing from "../Landing";
 import Login from "../Login";
 import Signup from "../Signup";
 import NotFound from "../NotFound";
-import "./styles.css";
+import Dashboard from "../Dashboard";
 
 const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={Landing} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route component={NotFound} />

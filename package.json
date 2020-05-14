@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "gsap": "^3.2.6",
     "history": "^4.10.1",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -19,8 +20,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.2",
     "swiper": "^5.3.8"
   },
   "scripts": {

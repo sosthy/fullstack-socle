@@ -4,9 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { App } from "./modules/app";
 import { ReduxService, HttpService } from "./configs";
-import "semantic-ui-css/semantic.min.css";
-import "swiper/css/swiper.min.css";
-import "./index.css";
+import "./index.scss";
 
 const store = ReduxService.configureStore();
 HttpService.setupInterceptors(store);
