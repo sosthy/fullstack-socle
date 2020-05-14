@@ -21,7 +21,7 @@ const Login = () => {
     gsap.from(loginFormRef.current, {
       duration: 0.5,
       opacity: 0,
-      delay: 1.5,
+      delay: 0.5,
     });
     new Swiper(".swiper-container", {
       // Optional parameters
