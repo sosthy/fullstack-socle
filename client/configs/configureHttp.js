@@ -2,14 +2,14 @@ import axios from "axios";
 import * as actions from "../modules/session/actionTypes";
 import { API_URL } from "../constants";
 
-const token = localStorage.getItem("token");
 axios.defaults.baseURL = API_URL;
 
 const setupInterceptors = (store) => {
   // Add a request interceptor
   axios.interceptors.request.use(
     function (config) {
-      config.headers["Authorization"] = `Bearer ${token}`;
+      const token = localStorage.getItem("token");
+      if (token) config.headers["Authorization"] = `Bearer ${token}`;
       return config;
     },
     function (error) {

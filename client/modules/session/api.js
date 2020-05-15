@@ -9,6 +9,8 @@ export const signin = (credentials) => {
   return axios.post(API_URL + "auth/signin", credentials);
 };
 
-export const signup = (user) => {
-  return axios.post(API_URL + "auth/signup", user);
+export const signup = async (user) => {
+  return await axios.post(API_URL + "auth/signup", user);
 };
+
+export let isAuthenticated = false;

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { signin } from "../../../session/api";
-import SigninForm from "./SigninForm";
-import gsap from "gsap";
+import React, { useState, useEffect } from "react";
+import * as SessionService from "../../../session/api";
+import { LOCAL_STORAGE } from "../../../../constants";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -13,11 +12,16 @@ const Login = () => {
   useEffect(() => {}, []);
 
   const handleOnSubmit = (e) => {
-    console.log(credentials);
-    signin(credentials).then(({ data }) => {
-      console.log(data);
-    });
     e.preventDefault();
+    SessionService.signin(credentials)
+      .then(({ data }) => {
+        console.log(data);
+        localStorage.setItem(LOCAL_STORAGE.TOKEN, data.token);
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
   };
 
   const handleOnChange = (e) => {
@@ -29,13 +33,29 @@ const Login = () => {
 
   return (
     <div>
-      <div>
-        <div></div>
-      </div>
-      <main>
-        <nav></nav>
-        <div></div>
-      </main>
+      <form onSubmit={handleOnSubmit}>
+        <div className="">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            value={credentials.username}
+            onChange={handleOnChange}
+          />
+        </div>
+        <div className="">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={credentials.password}
+            onChange={handleOnChange}
+          />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 };
