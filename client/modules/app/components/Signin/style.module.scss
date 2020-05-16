@@ -10,8 +10,10 @@
 .signinBox {
   padding: 20px;
   width: 460px;
-  min-width: 360px;
   transform: translateY(-20%);
+  @media (max-width: 360px) {
+    transform: translateY(0);
+  }
 }
 
 footer {
@@ -19,6 +21,9 @@ footer {
   bottom: 0;
   padding: 2em;
   width: 100%;
+  @media (max-width: 360px) {
+    padding-bottom: 5px;
+  }
 }
 
 .rightContainer {

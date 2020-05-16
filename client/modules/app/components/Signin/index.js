@@ -4,6 +4,7 @@ import session from "../../../session";
 import PropTypes from "prop-types";
 import styles from "./style.module.scss";
 import logo from "../../../../images/company_logo.png";
+import login_background from "../../../../images/app_development_PNG.png";
 
 console.log(styles);
 
@@ -91,8 +92,25 @@ const Signin = ({ signin, history }) => {
           </footer>
         </div>
         <div
-          className={"col-lg-7 d-none d-lg-block " + styles.rightContainer}
-        ></div>
+          className={
+            "col-lg-7 d-none d-lg-flex text-center flex-column justify-content-center align-items-center " +
+            styles.rightContainer
+          }
+        >
+          <img
+            src={login_background}
+            style={{ width: "400px", height: "auto" }}
+            alt=""
+          />
+          <div className="mx-auto w-50 mt-5 text-white">
+            <h3>Lorem, ipsum dolor sit amet.</h3>
+            <p className="mt-3">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea,
+              ipsum earum modi, aliquam minima illum amet, consequatur vitae
+              voluptate temporibus soluta.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
