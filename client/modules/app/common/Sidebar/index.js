@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
-const Sidebar = () => {
+const Sidebar = ({ t }) => {
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <Link to="/" className="brand-link">
@@ -31,13 +33,13 @@ const Sidebar = () => {
             <li className="nav-item">
               <Link to="/admin/users" className="nav-link">
                 <i className="nav-icon fas fa-calendar-alt" />
-                <p>Utilisateurs</p>
+                <p>{t("users")}</p>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/admin/roles" className="nav-link">
                 <i className="nav-icon far fa-image" />
-                <p>Roles</p>
+                <p>{t("roles")}</p>
               </Link>
             </li>
           </ul>
@@ -47,4 +49,8 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+Sidebar.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default withTranslation()(Sidebar);

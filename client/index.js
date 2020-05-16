@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
@@ -12,11 +12,13 @@ HttpService.setupInterceptors(store);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReduxProvider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </ReduxProvider>
+    <Suspense fallback={"Loading..."}>
+      <ReduxProvider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </ReduxProvider>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
 );

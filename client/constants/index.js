@@ -5,4 +5,5 @@ export const LOCAL_STORAGE = {
 export const LANGUAGE = {
   FR: "fr",
   EN: "en",
+  DEFAULT: "fr",
 };

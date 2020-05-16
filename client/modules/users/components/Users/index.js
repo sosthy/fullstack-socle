@@ -3,11 +3,12 @@ import UsersList from "../UsersList";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as userActions from "../../actions";
+import { withTranslation } from "react-i18next";
 
-const Users = ({ users, loadUsers }) => {
+const Users = ({ t, users, loadUsers }) => {
   useEffect(() => {
     if (users.length === 0) loadUsers();
-  }, []);
+  }, [users.length, loadUsers]);
 
   return (
     <div className="content-wrapper">
@@ -15,14 +16,14 @@ const Users = ({ users, loadUsers }) => {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1 className="m-0 text-dark">Users</h1>
+              <h1 className="m-0 text-dark">{t("users")}</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/">Home</a>
+                  <a href="/">{t("home")}</a>
                 </li>
-                <li className="breadcrumb-item active">Users</li>
+                <li className="breadcrumb-item active">{t("users")}</li>
               </ol>
             </div>
           </div>
@@ -48,4 +49,7 @@ const mapDispatchToProps = {
   loadUsers: userActions.loadUsers,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(Users));

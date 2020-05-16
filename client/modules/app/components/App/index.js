@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Landing from "../Landing";
 import Signin from "../Signin";
@@ -11,10 +11,6 @@ import session from "../../../session";
 import { withTranslation } from "react-i18next";
 
 const App = ({ t, i18n, session, changeLanguage }) => {
-  useEffect(() => {
-    if (i18n.language !== session.language) changeLanguage(i18n.language);
-  }, []);
-
   return (
     <Switch>
       <Route exact path="/" component={Landing} />
