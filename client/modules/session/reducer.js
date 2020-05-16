@@ -1,6 +1,7 @@
 import * as actions from "./actionTypes";
+import initialState from "../initialState";
 
-export default (state = [], action) => {
+export default (state = initialState.session, action) => {
   const { type, payload } = action;
   switch (type) {
     case actions.AUTHENTICATE:

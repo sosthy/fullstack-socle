@@ -12,9 +12,18 @@ export const userLogout = () => ({
 
 export const signin = (credentials) => {
   return (dispatch) => {
-    return api.signin(credentials).then((resp) => {
-      console.log(resp);
-    });
+    return api
+      .signin(credentials)
+      .then(({ data }) => {
+        const action = userAuthenticate({
+          token: data.token,
+          isAuthenticated: true,
+        });
+        dispatch(action);
+      })
+      .catch((error) => {
+        throw error;
+      });
   };
 };
 
