@@ -6,6 +6,11 @@ export const userAuthenticate = (session) => ({
   payload: { session },
 });
 
+export const appChangeLanguage = (session) => ({
+  type: actions.CHANGE_LANGUAGE,
+  payload: { session },
+});
+
 export const userLogout = () => ({
   type: actions.LOGOUT,
 });
@@ -27,9 +32,15 @@ export const signin = (credentials) => {
   };
 };
 
-export const logout = (credentials) => {
+export const logout = () => {
   return (dispatch) => {
     dispatch(userLogout);
+  };
+};
+
+export const changeLanguage = (langKey) => {
+  return (dispatch) => {
+    dispatch(appChangeLanguage({ language: langKey }));
   };
 };
 

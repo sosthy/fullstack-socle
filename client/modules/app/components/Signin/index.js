@@ -6,8 +6,6 @@ import styles from "./style.module.scss";
 import logo from "../../../../images/company_logo.png";
 import login_background from "../../../../images/app_development_PNG.png";
 
-console.log(styles);
-
 const Signin = ({ signin, history }) => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -70,9 +68,15 @@ const Signin = ({ signin, history }) => {
                   />
                 </div>
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <div class="icheck-primary">
-                    <input type="checkbox" id="remember" />
-                    <label for="remember">Remember Me</label>
+                  <div className="icheck-primary">
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      name="remember"
+                      checked={credentials.remember}
+                      onChange={handleOnChange}
+                    />
+                    <label htmlFor="remember">Remember Me</label>
                   </div>
                   <a href="/fake">Forgot password ?</a>
                 </div>
@@ -84,7 +88,7 @@ const Signin = ({ signin, history }) => {
               </form>
             </div>
           </div>
-          <footer className={"text-center"}>
+          <footer className={"signin-footer text-center"}>
             <span>
               Copyright © 2014-2019&nbsp;-&nbsp;
               <a href="https://www.itgstore-consulting.com">ITGStore S.A</a>
@@ -103,11 +107,10 @@ const Signin = ({ signin, history }) => {
             alt=""
           />
           <div className="mx-auto w-50 mt-5 text-white">
-            <h3>Lorem, ipsum dolor sit amet.</h3>
-            <p className="mt-3">
+            <h3 className="font-weight-bold">Lorem, ipsum dolor sit amet.</h3>
+            <p className="mt-3 lead">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea,
-              ipsum earum modi, aliquam minima illum amet, consequatur vitae
-              voluptate temporibus soluta.
+              ipsum earum modi.
             </p>
           </div>
         </div>

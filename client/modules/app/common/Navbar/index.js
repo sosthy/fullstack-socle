@@ -1,6 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import session from "../../../session";
+import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
+import { LANGUAGE } from "../../../../constants";
 
-const Header = () => {
+const Header = ({ t, changeLanguage, session }) => {
   return (
     <div>
       {/* Navbar */}
@@ -8,24 +14,24 @@ const Header = () => {
         {/* Left navbar links */}
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a
+            <Link
               className="nav-link"
               data-widget="pushmenu"
-              href="/"
+              to="/"
               role="button"
             >
               <i className="fas fa-bars" />
-            </a>
+            </Link>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" className="nav-link">
-              Home
-            </a>
+            <Link to="index3.html" className="nav-link">
+              {t("home")}
+            </Link>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="/" className="nav-link">
-              Contact
-            </a>
+            <Link to="/" className="nav-link">
+              {t("contact")}
+            </Link>
           </li>
         </ul>
         {/* SEARCH FORM */}
@@ -48,12 +54,12 @@ const Header = () => {
         <ul className="navbar-nav ml-auto">
           {/* Messages Dropdown Menu */}
           <li className="nav-item dropdown">
-            <a className="nav-link" data-toggle="dropdown" href="/">
+            <Link className="nav-link" data-toggle="dropdown" to="/">
               <i className="far fa-comments" />
               <span className="badge badge-danger navbar-badge">3</span>
-            </a>
+            </Link>
             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <a href="/" className="dropdown-item">
+              <Link to="/" className="dropdown-item">
                 {/* Message Start */}
                 <div className="media">
                   <img
@@ -75,9 +81,9 @@ const Header = () => {
                   </div>
                 </div>
                 {/* Message End */}
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item">
+              <Link to="/" className="dropdown-item">
                 {/* Message Start */}
                 <div className="media">
                   <img
@@ -99,9 +105,9 @@ const Header = () => {
                   </div>
                 </div>
                 {/* Message End */}
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item">
+              <Link to="/" className="dropdown-item">
                 {/* Message Start */}
                 <div className="media">
                   <img
@@ -123,78 +129,99 @@ const Header = () => {
                   </div>
                 </div>
                 {/* Message End */}
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item dropdown-footer">
+              <Link to="/" className="dropdown-item dropdown-footer">
                 See All Messages
-              </a>
+              </Link>
             </div>
           </li>
           {/* Notifications Dropdown Menu */}
           <li className="nav-item dropdown">
-            <a className="nav-link" data-toggle="dropdown" href="/">
+            <Link className="nav-link" data-toggle="dropdown" to="/">
               <i className="far fa-bell" />
               <span className="badge badge-warning navbar-badge">15</span>
-            </a>
+            </Link>
             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <span className="dropdown-item dropdown-header">
                 15 Notifications
               </span>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item">
+              <Link to="/" className="dropdown-item">
                 <i className="fas fa-envelope mr-2" /> 4 new messages
                 <span className="float-right text-muted text-sm">3 mins</span>
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item">
+              <Link to="/" className="dropdown-item">
                 <i className="fas fa-users mr-2" /> 8 friend requests
                 <span className="float-right text-muted text-sm">12 hours</span>
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item">
+              <Link to="/" className="dropdown-item">
                 <i className="fas fa-file mr-2" /> 3 new reports
                 <span className="float-right text-muted text-sm">2 days</span>
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/" className="dropdown-item dropdown-footer">
+              <Link to="/" className="dropdown-item dropdown-footer">
                 See All Notifications
-              </a>
+              </Link>
             </div>
           </li>
           <li className="nav-item dropdown">
-            <a className="nav-link" data-toggle="dropdown" href="#">
-              <i className="flag-icon flag-icon-us" />
-            </a>
+            <Link className="nav-link" data-toggle="dropdown" to="#">
+              <i
+                className={
+                  session.language === LANGUAGE.EN
+                    ? "flag-icon flag-icon-us"
+                    : "flag-icon flag-icon-fr"
+                }
+              />
+            </Link>
             <div className="dropdown-menu dropdown-menu-right p-0">
-              <a href="#" className="dropdown-item">
-                <i className="flag-icon flag-icon-fr mr-2" /> French
-              </a>
-              <a href="#" className="dropdown-item active">
-                <i className="flag-icon flag-icon-us mr-2" /> English
-              </a>
+              <Link
+                to="#"
+                className={
+                  session.language === LANGUAGE.FR
+                    ? "dropdown-item active"
+                    : "dropdown-item"
+                }
+                onClick={() => changeLanguage(LANGUAGE.FR)}
+              >
+                <i className="flag-icon flag-icon-fr mr-2" /> {t("french")}
+              </Link>
+              <Link
+                to="#"
+                className={
+                  session.language === LANGUAGE.EN
+                    ? "dropdown-item active"
+                    : "dropdown-item"
+                }
+                onClick={() => changeLanguage(LANGUAGE.EN)}
+              >
+                <i className="flag-icon flag-icon-us mr-2" /> {t("english")}
+              </Link>
             </div>
           </li>
-
           <li className="nav-item dropdown user-menu">
-            <a
-              href="#"
+            <Link
+              to="#"
               className="nav-link dropdown-toggle"
               data-toggle="dropdown"
             >
               <img
                 src="../../dist/img/user2-160x160.jpg"
                 className="user-image img-circle elevation-2"
-                alt="User Image"
+                alt="User"
               />
               <span className="d-none d-md-inline">Alexander Pierce</span>
-            </a>
+            </Link>
             <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               {/* User image */}
               <li className="user-header bg-primary">
                 <img
                   src="../../dist/img/user2-160x160.jpg"
                   className="img-circle elevation-2"
-                  alt="User Image"
+                  alt="User"
                 />
                 <p>
                   Alexander Pierce - Web Developer
@@ -205,25 +232,25 @@ const Header = () => {
               <li className="user-body">
                 <div className="row">
                   <div className="col-4 text-center">
-                    <a href="#">Followers</a>
+                    <Link to="#">Followers</Link>
                   </div>
                   <div className="col-4 text-center">
-                    <a href="#">Sales</a>
+                    <Link to="#">Sales</Link>
                   </div>
                   <div className="col-4 text-center">
-                    <a href="#">Friends</a>
+                    <Link to="#">Friends</Link>
                   </div>
                 </div>
                 {/* /.row */}
               </li>
               {/* Menu Footer*/}
               <li className="user-footer">
-                <a href="#" className="btn btn-default btn-flat">
+                <Link to="#" className="btn btn-default btn-flat">
                   Profile
-                </a>
-                <a href="#" className="btn btn-default btn-flat float-right">
+                </Link>
+                <Link to="#" className="btn btn-default btn-flat float-right">
                   Sign out
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -234,4 +261,23 @@ const Header = () => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  changeLanguage: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+  session: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    session: state.session,
+  };
+};
+
+const mapDispatchToProps = {
+  changeLanguage: session.actions.changeLanguage,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(Header));
